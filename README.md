@@ -1,4 +1,4 @@
-# Book Club: social book list
+# Book Club: a social book list
 
 This is an application that you can use to make a list of books
 you've read and would like to read,
