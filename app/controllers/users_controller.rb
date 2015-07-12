@@ -5,7 +5,11 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    redirect_to root_url and return unless @user.activated
+    if @user.activated
+      @books = @user.books.paginate(page: params[:page])
+    else
+      redirect_to root_url and return
+    end
   end
   
   def new

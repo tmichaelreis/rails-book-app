@@ -1,0 +1,10 @@
+<li id="book-<%= book.id %>">
+  <%= link_to gravatar_for(book.user, size: 50), book.user %>
+  <span class="user"><%= link_to book.user.name, book.user %></span>
+  <%= book_image_for(book, zoom: 1) %>
+  <span class="review"><%= book.review %></span>
+  <span class="rating"><%= book.rating %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(book.created_at) %> ago.
+  </span>
+</li>

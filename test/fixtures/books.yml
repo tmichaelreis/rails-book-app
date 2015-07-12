@@ -1,0 +1,19 @@
+gatsby:
+  isbn: "9780191647253"
+  rating: 3
+  created_at: <%= 10.minutes.ago %>
+
+catcher:
+  isbn: "9780316769174"
+  rating: 4
+  created_at: <%= 3.years.ago %>
+
+highest_rated:
+  isbn: "9784871878999"
+  rating: 5
+  created_at: <%= 2.hours.ago %>
+
+most_recent:
+  isbn: "9781440633904"
+  rating: 2
+  created_at: <%= Time.zone.now %>
