@@ -1,0 +1,7 @@
+<!--TODO: Build lists with book image, title, author, etc. !-->
+<ul>
+  <% @search_results.each do |book| %>
+<li><%= link_to book.title, 
+  :action => 'show', :id => grant.id  %></li>
+<% end %>
+</ul>

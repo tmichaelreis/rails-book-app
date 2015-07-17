@@ -1,15 +1,24 @@
-require 'googlebooks'
+require 'openlibrary'
+require 'yaml'
 
-titles = ['The Great Gatsby', 'Catcher in the Rye', 'Grapes of Wrath',
+client = Openlibrary::Client.new
+view = Openlibrary::View
+data = Openlibrary::Data
+details = Openlibrary::Details
+
+titles = ['The Great Gatsby', 'The Catcher in the Rye', 'Grapes of Wrath',
           'Of Mice and Men']
+          
 booksarr = []
 titles.each do |title|
-  booksarr.push(GoogleBooks.search(title).first)
+  booksarr.push(client.search(title: title)[0])
 end
 
 booksarr.each do |book|
-  puts book.authors
-  puts book.isbn
-  puts book.image_link(:zoom => 6)
+  isbn = book.isbn
+  puts isbn[0]
+  cover_i = book.cover_i
+  puts cover_i
+
 end
 
