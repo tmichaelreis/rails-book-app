@@ -17,8 +17,12 @@ end
 booksarr.each do |book|
   isbn = book.isbn
   puts isbn[0]
+  author = book.author_name
+  puts author
   cover_i = book.cover_i
   puts cover_i
+  
+  puts book['key']
 
 end
 

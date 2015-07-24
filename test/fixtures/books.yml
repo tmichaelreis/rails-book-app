@@ -1,19 +1,35 @@
 gatsby:
+  title: "The Great Gatsby"
   isbn: "9780191647253"
-  rating: 3
+  thumbnail_url: "https://covers.openlibrary.org/b/id/3169298-S.jpg"
   created_at: <%= 10.minutes.ago %>
+  user: testuser
 
 catcher:
+  title: "The Catcher in the Rye"
   isbn: "9780316769174"
-  rating: 4
+  thumbnail_url: "https://covers.openlibrary.org/b/id/6790237-S.jpg"
   created_at: <%= 3.years.ago %>
+  user: testuser
 
 highest_rated:
+  title: "Grapes of Wrath"
   isbn: "9784871878999"
-  rating: 5
+  thumbnail_url: "https://covers.openlibrary.org/b/id/6790237-S.jpg"
   created_at: <%= 2.hours.ago %>
+  user: testuser
 
 most_recent:
+  title: "Of Mice and Men"
   isbn: "9781440633904"
-  rating: 2
+  thumbnail_url: "https://covers.openlibrary.org/b/id/6783900-S.jpg"
   created_at: <%= Time.zone.now %>
+  user: testuser
+  
+<% 30.times do |n| %>
+book_<%= n %>:
+  title: <%= Faker::Lorem.sentence(3) %>
+  isbn: <%= Faker::Number.number(5) %>
+  created_at: <%= 42.days.ago %>
+  user: testuser
+<% end %>

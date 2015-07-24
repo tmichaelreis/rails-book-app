@@ -20,19 +20,23 @@ end
 
 users = User.order(:created_at).take(6)
 
+titles = ['The Great Gatsby', 'The Catcher in the Rye', 'Grapes of Wrath',
+          'Of Mice and Men']
+authors = ['F. Scott Fitzgerald','Robert B. Kaplan', 'Boyd Cable', 
+           'John Steinbeck']
 isbn_codes = ["9780191647253", "9780316769174", 
               "9784871878999", "9781440633904"]
-              
 image_ids = ["3169298", "6790237", "6790237", "6783900"]
 
 50.times do
-  isbn = isbn_codes[Faker::Number.between(0,3)]
-  rating = Faker::Number.between(1, 5)
-  review = Faker::Lorem.sentence(5)
+  rand_book = Faker::Number.between(0,3)
+  title = titles[rand_book]
+  author = authors[rand_book]
+  isbn = isbn_codes[rand_book]
   thumbnail_url = "https://covers.openlibrary.org/b/id/" + 
-                  image_ids[Faker::Number.between(0,3)] + "-S.jpg"
+                  image_ids[rand_book] + "-S.jpg"
   users.each do |user| 
-    user.books.create!(isbn: isbn, rating: rating, review: review, 
+    user.books.create!(title: title, author: author, isbn: isbn, 
                        thumbnail_url: thumbnail_url)
   end
 end

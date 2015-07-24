@@ -4,7 +4,8 @@ class BookTest < ActiveSupport::TestCase
   
   def setup
     @user = users(:testuser)
-    @book = @user.books.build(isbn: "test isbn", review: "review", rating: 2)
+    @book = @user.books.build(title: "test title", isbn: "test isbn", 
+                              review: "review", rating: 2)
   end
   
   test "should be valid" do

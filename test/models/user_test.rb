@@ -79,7 +79,7 @@ class UserTest < ActiveSupport::TestCase
   
   test "associated books should be destroyed" do
     @user.save
-    @user.books.create!(isbn: "isbn", rating: 2)
+    @user.books.create!(title: "foobar", isbn: "isbn", review: "baz", rating: 2)
     assert_difference 'Book.count', -1 do
       @user.destroy
     end
