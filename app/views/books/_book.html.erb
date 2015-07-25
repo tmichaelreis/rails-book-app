@@ -1,9 +1,7 @@
 <li id="book-<%= book.id %>">
-  <span class="user"><%= link_to book.user.name, book.user %></span>
   <span class="book_title"><%= book.title %></span>
   <%= image_tag(book.thumbnail_url, alt: 'no_thumb.jpg', class: "bookthumb") %>
-  <span class="review"><%= book.review %></span>
-  <span class="rating"><%= book.rating %></span>
+  <span class="book_author"><%= book.author %></span>
   <span class="timestamp">
     Added <%= time_ago_in_words(book.created_at) %> ago.
   </span>

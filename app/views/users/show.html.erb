@@ -10,7 +10,11 @@
   </aside>
   <div class="col-md-8">
     <% if @user.books.any? %>
-      <h3>Books read: (<%= @user.books.count %>)</h3>
+      <a href="<%= books_user_path(@user) %>">
+       <strong id="books_on_list" class="stat">
+         <%= pluralize(@user.books.count, "book") + " to read" %>
+       </strong>
+      </a>
       <ol class="books">
         <%= render @books %>
       </ol>

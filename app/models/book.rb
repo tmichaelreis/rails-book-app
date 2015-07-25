@@ -1,7 +1,9 @@
 class Book < ActiveRecord::Base
-  belongs_to :user
+  has_many :relationships, class_name: 'Relationship',
+                           foreign_key: 'book_id',
+                           dependent: :destroy
+  has_many :readers, through: :relationships
   default_scope -> { order(created_at: :desc) }
-  validates :user_id, presence: true
   validates :title, presence: true
   validates :isbn, presence: true
 end

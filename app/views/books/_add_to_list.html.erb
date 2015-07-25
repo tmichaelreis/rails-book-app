@@ -1,0 +1,5 @@
+<%= form_for(current_user.relationships.build) do |f| %>
+  <!-- add hidden field tags for book information ? -->
+  <div><%= hidden_field_tag :book_id, @book.id %></div>
+  <%= f.submit "Add to list", class: "btn btn-primary" %>
+<% end %>

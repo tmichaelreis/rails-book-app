@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
-  has_many :books, dependent: :destroy
+  has_many :relationships, class_name: 'Relationship',
+                           foreign_key: 'reader_id',
+                           dependent: :destroy
+  has_many :books, through: :relationships
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save :downcase_email
   before_create :create_activation_digest
@@ -66,6 +69,26 @@ class User < ActiveRecord::Base
   # Returns true if password has expired
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+  
+  # Shows all books on user's wish list
+  def reading_list
+    books
+  end
+  
+  # Adds book to user's wish list
+  def add_to_list(book)
+    relationships.create(book_id: book.id)
+  end
+  
+  # Removes book from wish list
+  def remove_from_list(book)
+    relationships.find_by(book_id: book.id).destroy
+  end
+  
+  # Returns true if book is on user's list
+  def on_list?(book)
+    books.include?(book)
   end
   
   private

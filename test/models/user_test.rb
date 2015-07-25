@@ -77,11 +77,14 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.authenticated?(:remember, '')
   end
   
-  test "associated books should be destroyed" do
-    @user.save
-    @user.books.create!(title: "foobar", isbn: "isbn", review: "baz", rating: 2)
-    assert_difference 'Book.count', -1 do
-      @user.destroy
-    end
+  test "should add and remove a book" do
+    testuser = users(:testuser)
+    gatsby = books(:gatsby)
+    assert_not testuser.on_list?(gatsby)
+    testuser.add_to_list(gatsby)
+    assert testuser.on_list?(gatsby)
+    assert gatsby.readers.include?(testuser)
+    testuser.remove_from_list(gatsby)
+    assert_not testuser.on_list?(gatsby)
   end
 end

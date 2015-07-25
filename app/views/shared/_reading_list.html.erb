@@ -1,0 +1,6 @@
+<% if @reading_list_items.any? %>
+  <ol class="books">
+    <%= render @reading_list_items %>
+  </ol>
+  <%= will_paginate @reading_list_items %>
+<% end %>

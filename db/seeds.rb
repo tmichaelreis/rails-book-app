@@ -28,15 +28,16 @@ isbn_codes = ["9780191647253", "9780316769174",
               "9784871878999", "9781440633904"]
 image_ids = ["3169298", "6790237", "6790237", "6783900"]
 
-50.times do
-  rand_book = Faker::Number.between(0,3)
-  title = titles[rand_book]
-  author = authors[rand_book]
-  isbn = isbn_codes[rand_book]
+titles.each_with_index do |title, idx|
+  author = authors[idx]
+  isbn = isbn_codes[idx]
   thumbnail_url = "https://covers.openlibrary.org/b/id/" + 
-                  image_ids[rand_book] + "-S.jpg"
-  users.each do |user| 
-    user.books.create!(title: title, author: author, isbn: isbn, 
-                       thumbnail_url: thumbnail_url)
-  end
+                  image_ids[idx] + "-S.jpg"
+  Book.create!(title: title, author: author, isbn: isbn, 
+               thumbnail_url: thumbnail_url)
 end
+
+# Book listing relationships
+user = User.first
+books = Book.all
+books.each { |book| user.add_to_list(book) }
