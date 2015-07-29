@@ -51,6 +51,20 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
   
+  def add_book_to_list
+    book = Book.find(params[:book_id])
+    current_user.add_to_list(book)
+    flash[:success] = "Book added to your reading list!"
+    redirect_to current_user
+  end
+  
+  def remove_book_from_list
+    book = Book.find(params[:book_id])
+    current_user.remove_from_list(book)
+    flash[:success] = "#{book.title} removed from your reading list!"
+    redirect_to current_user
+  end
+  
   private 
     
     def user_params

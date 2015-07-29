@@ -1,0 +1,12 @@
+<span class="list_link">
+  <% if !current_user.on_list?(book) %>
+    <%= link_to "Add to reading list", 
+        add_book_to_list_user_path(:id => current_user.id, :book_id => book.id),
+        :method => :post %>
+  <% else %>
+    <%= link_to "Remove from reading list", 
+        remove_book_from_list_user_path(:id => current_user.id, 
+                                        :book_id => book.id), 
+        :method => :post %>
+  <% end %>
+</span>

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get :books
+      post :add_book_to_list
+      post :remove_book_from_list
     end
   end
   resources :account_activations, only: [:edit]

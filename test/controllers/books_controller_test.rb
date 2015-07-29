@@ -5,6 +5,7 @@ class BooksControllerTest < ActionController::TestCase
 
   def setup
     @book = books(:gatsby)
+    @user = users(:testuser)
   end
 
   test "should redirect create when not logged in" do
@@ -20,5 +21,12 @@ class BooksControllerTest < ActionController::TestCase
       delete :destroy, id: @book
     end
     assert_redirected_to login_url
+  end
+  
+  test "should find a book in db" do
+    log_in_as(@user)
+    get :search, search: "Gatsby"
+    assert_response :success
+    assert_includes @response.body, 'The Great Gatsby'
   end
 end

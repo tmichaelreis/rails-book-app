@@ -3,22 +3,26 @@
   <aside class="col-md-4">
     <section class="user_info">
       <h1>
-        <%= gravatar_for @user %>
+        <%= gravatar_for(@user, size: 50) %>
         <%= @user.name %>
       </h1>
+      <strong id="books_on_list" class="stat">
+        <%= pluralize(@user.books.count, "book") + " on reading list" %>
+      </strong>
+    </section>
+    <section class="book_form">
+      <%= render 'shared/book_search' %>
     </section>
   </aside>
   <div class="col-md-8">
+    <h3>Reading List</h3>
     <% if @user.books.any? %>
-      <a href="<%= books_user_path(@user) %>">
-       <strong id="books_on_list" class="stat">
-         <%= pluralize(@user.books.count, "book") + " to read" %>
-       </strong>
-      </a>
       <ol class="books">
         <%= render @books %>
       </ol>
       <%= will_paginate @books %>
+    <% else %>
+      <span><%= "No books on " + @user.name + "'s reading list :(" %></span>
     <% end %>
   </div>
 </div>

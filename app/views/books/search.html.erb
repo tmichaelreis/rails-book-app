@@ -12,10 +12,9 @@
   <div class="col-md-8">
     <% if @search_results.count > 0 %>
       <h3><%= pluralize(@search_results.count, 'result') %></h3>
-        <%= render 'search_results', search_results: @search_results %>
+      <%= render 'search_results', search_results: @search_results %>
     <% else %>
       <h3>No results found</h3>
     <% end %>
   </div>
 </div>
-

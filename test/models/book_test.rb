@@ -4,6 +4,7 @@ class BookTest < ActiveSupport::TestCase
   
   def setup
     @book = Book.new(title: "test title", author: "author", isbn: "test isbn")
+    @gatsby = books(:gatsby)
   end
   
   test "should be valid" do
@@ -18,5 +19,9 @@ class BookTest < ActiveSupport::TestCase
   # Ordering test - need to order on relations, not on books
   test "order should show most recent first" do
     assert_equal books(:most_recent), Book.first
+  end
+  
+  test "should select book from database" do
+    assert_equal Book.search_db("Gatsby")[0], @gatsby
   end
 end

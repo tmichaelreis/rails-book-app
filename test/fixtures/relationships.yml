@@ -1,0 +1,5 @@
+<% 50.times do |n| %>
+relationship_<%= n %>:
+  reader: testuser
+  book: book_<%= n %>
+<% end %>

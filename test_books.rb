@@ -23,6 +23,8 @@ booksarr.each do |book|
   puts cover_i
   
   puts book['key']
+  
+  puts book.first_publish_year
 
 end
 

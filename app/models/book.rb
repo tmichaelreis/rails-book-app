@@ -6,4 +6,8 @@ class Book < ActiveRecord::Base
   default_scope -> { order(created_at: :desc) }
   validates :title, presence: true
   validates :isbn, presence: true
+  
+  def self.search_db(query)
+      where('title LIKE ? OR author LIKE ?', "%#{query}%", "%#{query}%")
+  end
 end

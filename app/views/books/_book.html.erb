@@ -1,8 +1,16 @@
+<% thumbnail_url = book.thumbnail_url || asset_path('no_thumb.jpg') %>
+<% info_url = 'https://openlibrary.org' + book.openlibrary_key %>
+
 <li id="book-<%= book.id %>">
-  <span class="book_title"><%= book.title %></span>
-  <%= image_tag(book.thumbnail_url, alt: 'no_thumb.jpg', class: "bookthumb") %>
+  <h4 class="book_title"><%= book.title %></h4>
+  <%= link_to(image_tag(thumbnail_url, class: "bookthumb"), 
+              info_url, target: "_blank") %>
   <span class="book_author"><%= book.author %></span>
+  <span class="book_publishing_date">
+    <%= book.first_publish_year %>
+  </span>
   <span class="timestamp">
     Added <%= time_ago_in_words(book.created_at) %> ago.
   </span>
+  <%= render 'books/list_form', book: book %>
 </li>

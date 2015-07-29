@@ -18,13 +18,11 @@ ActiveRecord::Schema.define(version: 20150724214206) do
     t.string   "author"
     t.string   "isbn"
     t.string   "thumbnail_url"
-    t.integer  "user_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "openlibrary_key"
+    t.integer  "first_publish_year"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
-
-  add_index "books", ["user_id", "created_at"], name: "index_books_on_user_id_and_created_at"
-  add_index "books", ["user_id"], name: "index_books_on_user_id"
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "reader_id"

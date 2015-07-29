@@ -76,12 +76,12 @@ class User < ActiveRecord::Base
     books
   end
   
-  # Adds book to user's wish list
+  # Adds book to user's reading list
   def add_to_list(book)
     relationships.create(book_id: book.id)
   end
   
-  # Removes book from wish list
+  # Removes book from reading list
   def remove_from_list(book)
     relationships.find_by(book_id: book.id).destroy
   end

@@ -2,23 +2,31 @@ gatsby:
   title: "The Great Gatsby"
   isbn: "9780191647253"
   thumbnail_url: "https://covers.openlibrary.org/b/id/3169298-S.jpg"
+  openlibrary_key: "/works/OL468431W"
+  first_publish_year: 1920
   created_at: <%= 10.minutes.ago %>
 
 catcher:
   title: "The Catcher in the Rye"
   isbn: "9780316769174"
   thumbnail_url: "https://covers.openlibrary.org/b/id/6790237-S.jpg"
+  openlibrary_key: "/works/OL3335292W"
+  first_publish_year: 1945
   created_at: <%= 3.years.ago %>
 
 most_recent:
   title: "Of Mice and Men"
   isbn: "9781440633904"
   thumbnail_url: "https://covers.openlibrary.org/b/id/6783900-S.jpg"
+  openlibrary_key: "/works/OL23205W"
+  first_publish_year: 1937
   created_at: <%= Time.zone.now %>
   
-<% 30.times do |n| %>
+<% 50.times do |n| %>
 book_<%= n %>:
   title: <%= Faker::Lorem.sentence(3) %>
   isbn: <%= Faker::Number.number(5) %>
+  thumbnail_url: "https://covers.openlibrary.org/b/id/6783900-S.jpg"
+  openlibrary_key: "/works/OL23205W"
   created_at: <%= 42.days.ago %>
 <% end %>

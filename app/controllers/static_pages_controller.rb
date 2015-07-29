@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
   def home
     if logged_in?
-      @wish_list_items = current_user.wish_list.paginate(page: params[:page])
+      @reading_list_items = current_user.books.paginate(page: params[:page])
     end
   end
 

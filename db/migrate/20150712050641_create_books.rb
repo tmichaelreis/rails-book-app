@@ -5,10 +5,10 @@ class CreateBooks < ActiveRecord::Migration
       t.string :author
       t.string :isbn
       t.string :thumbnail_url
-      t.references :user, index: true, foreign_key: true
+      t.string :openlibrary_key
+      t.integer :first_publish_year
 
       t.timestamps null: false
     end
-    add_index :books, [:user_id, :created_at]
   end
 end

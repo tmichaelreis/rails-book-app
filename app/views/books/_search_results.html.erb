@@ -1,29 +1,47 @@
 <ol class='books'>
   <% @search_results.each_with_index do |book, idx| %>
-          
-  <% if !book.cover_i.nil? %>
-    <% thumbnail_url = "https://covers.openlibrary.org/b/id/" + 
-                        book.cover_i.to_s + "-S.jpg" %>
+  
+    <% if @search_results_type == "db" %>
+      <% thumbnail_url = book.thumbnail_url || asset_path('no_thumb.jpg') %>
+      <% author = book.author %>
+      <% info_url = 'https://openlibrary.org' + book.openlibrary_key %>
+      
+      <li id="book-<%= idx %>">
+        <h4 class="book_title"><%= book.title %></h4>
+        <%= link_to(image_tag(thumbnail_url, class: "bookthumb"), 
+                    info_url, target: "_blank") %>
+        <span class="book_author"><%= author %></span>
+        <span class="book_publishing_date">
+          <%= book.first_publish_year %>
+        </span>
+        <%= render 'list_form', book: book %>
+      </li>
     <% else %>
-      <% thumbnail_url = asset_path('no_thumb.jpg') %>
+      <% if !book.cover_i.nil? %>
+        <% thumbnail_url = "https://covers.openlibrary.org/b/id/" + 
+                            book.cover_i.to_s + "-S.jpg" %>
+      <% else %>
+        <% thumbnail_url = asset_path('no_thumb.jpg') %>
+      <% end %>
+      
+      <% if !book.author_name.nil? %>
+        <% author = book.author_name[0] %>
+      <% else %>
+        <% author = "(No author listed)" %>
+      <% end %>
+      
+      <% info_url = 'https://openlibrary.org' + book['key'] %>
+    
+
+      <li id="book-<%= idx %>">
+        <h4 class="book_title"><%= book.title %></h4>
+        <%= link_to(image_tag(thumbnail_url, class: "bookthumb"), 
+                    info_url, target: "_blank") %>
+        <span class="book_author"><%= author %></span>
+        <span class="book_publishing_date">
+          <%= book.first_publish_year %>
+        </span>
+      </li>
     <% end %>
-          
-    <% if !book.author_name.nil? %>
-      <% author = book.author_name[0] %>
-    <% else %>
-      <% author = "(No author listed)" %>
-    <% end %>
-          
-    <% info_url = 'https://openlibrary.org' + book['key'] %>
-          
-    <li id="book-<%= idx %>">
-      <h4 class="book_title"><%= book.title %></h4>
-      <%= link_to(image_tag(thumbnail_url, class: "bookthumb"), 
-                  info_url, target: "_blank") %>
-      <span class="book_author"><%= author %></span>
-      <span class="book_publishing_date">
-        <%= book.first_publish_year %>
-      </span>
-    </li>
   <% end %>
 </ol>
