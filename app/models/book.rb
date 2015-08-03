@@ -5,7 +5,8 @@ class Book < ActiveRecord::Base
   has_many :readers, through: :relationships
   default_scope -> { order(created_at: :desc) }
   validates :title, presence: true
-  validates :isbn, presence: true
+  validates :openlibrary_key, presence: true, 
+            uniqueness: { case_sensitive: false }
   
   def self.search_db(query)
       where('title LIKE ? OR author LIKE ?', "%#{query}%", "%#{query}%")

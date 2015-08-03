@@ -32,7 +32,6 @@
       
       <% info_url = 'https://openlibrary.org' + book['key'] %>
     
-
       <li id="book-<%= idx %>">
         <h4 class="book_title"><%= book.title %></h4>
         <%= link_to(image_tag(thumbnail_url, class: "bookthumb"), 
@@ -41,6 +40,7 @@
         <span class="book_publishing_date">
           <%= book.first_publish_year %>
         </span>
+        <%= render 'api_list_form', book: book %>
       </li>
     <% end %>
   <% end %>

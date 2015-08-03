@@ -7,7 +7,7 @@ data = Openlibrary::Data
 details = Openlibrary::Details
 
 titles = ['The Great Gatsby', 'The Catcher in the Rye', 'Grapes of Wrath',
-          'Of Mice and Men']
+          'Of Mice and Men', 'The lord of the Rings']
           
 booksarr = []
 titles.each do |title|
@@ -26,5 +26,12 @@ booksarr.each do |book|
   
   puts book.first_publish_year
 
+end
+
+lord_books = client.search(title: 'lord of the rings')
+lord_books.each do |result|
+  puts result.title
+  puts result.isbn[0]
+  puts result.first_publish_year
 end
 

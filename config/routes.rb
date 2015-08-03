@@ -11,12 +11,12 @@ Rails.application.routes.draw do
     member do
       get :books
       post :add_book_to_list
+      post :add_book_from_api
       post :remove_book_from_list
     end
   end
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
-  resources :books
   get 'search' => 'books#search'
   post 'search' => 'books#search'
   resources :relationships, only: [:create, :destroy]

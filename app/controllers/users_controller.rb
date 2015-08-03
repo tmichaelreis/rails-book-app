@@ -58,6 +58,18 @@ class UsersController < ApplicationController
     redirect_to current_user
   end
   
+  def add_book_from_api
+    @book = Book.new(book_params)
+    if @book.save
+      new_book = Book.find(@book.id)
+      current_user.add_to_list(new_book)
+      flash[:success] = "Book added to your reading list!"
+      redirect_to current_user
+    else
+      flash[:warning] = "Book could not be added to the database!"
+    end
+  end
+  
   def remove_book_from_list
     book = Book.find(params[:book_id])
     current_user.remove_from_list(book)
@@ -66,6 +78,12 @@ class UsersController < ApplicationController
   end
   
   private 
+  
+    def book_params
+      params.require(:book_params).permit(:title, :author,
+                                          :thumbnail_url, :openlibrary_key, 
+                                          :first_publish_year)
+    end
     
     def user_params
       params.require(:user).permit(:name, :email, :password, 

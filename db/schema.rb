@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 20150724214206) do
   create_table "books", force: :cascade do |t|
     t.string   "title"
     t.string   "author"
-    t.string   "isbn"
     t.string   "thumbnail_url"
     t.string   "openlibrary_key"
     t.integer  "first_publish_year"

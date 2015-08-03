@@ -1,20 +1,6 @@
 class BooksController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
-  
-  def create
-    # Should add book to database instead?
-    @book = current_user.books.build(book_params)
-    if @book.save
-      flash[:success] = "Book added!"
-      redirect_to root_url
-    else
-      render 'static_pages/home'
-    end
-  end
-  
-  def destroy
-  end
-  
+
   def search
     # Search database for existing books
     @search_results = Book.search_db(params[:search]).order("title DESC")

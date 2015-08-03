@@ -3,7 +3,8 @@ require 'test_helper'
 class BookTest < ActiveSupport::TestCase
   
   def setup
-    @book = Book.new(title: "test title", author: "author", isbn: "test isbn")
+    @book = Book.new(title: "test title", author: "author", 
+                     openlibrary_key: "/works/OL2345543W")
     @gatsby = books(:gatsby)
   end
   
@@ -11,8 +12,13 @@ class BookTest < ActiveSupport::TestCase
     assert @book.valid?
   end
   
-  test "isbn should be present" do
-    @book.isbn = ""
+  test "ol_key should be present" do
+    @book.openlibrary_key = ""
+    assert_not @book.valid?
+  end
+  
+  test "ol_key should be unique" do
+    @book.openlibrary_key = @gatsby.openlibrary_key
     assert_not @book.valid?
   end
   

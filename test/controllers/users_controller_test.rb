@@ -5,6 +5,7 @@ class UsersControllerTest < ActionController::TestCase
   def setup
     @user = users(:testuser)
     @other_user = users(:archer)
+    @existing_book = books(:gatsby)
   end
   
   test "should redirect index when not logged in" do
@@ -65,5 +66,30 @@ class UsersControllerTest < ActionController::TestCase
       delete :destroy, id: @user
     end
     assert_redirected_to root_url
+  end
+  
+  test "should add book from db to user" do
+    log_in_as(@user)
+    assert_not @user.on_list?(@existing_book)
+    post :add_book_to_list, id: @user, book_id: @existing_book
+    assert @user.on_list?(@existing_book)
+    assert_not flash.empty?
+    assert_redirected_to @user
+  end
+  
+  # Include test of invalid api book addition
+  
+  test "should add book from api" do
+    log_in_as(@user)
+    assert_not Book.find_by(openlibrary_key: "/works/notakey")
+    book_params = { :title => "foo", :author => "bar",
+                    :thumbnail_url => "http://placehold.it/120x120&text=image1",
+                    :openlibrary_key => "/works/234432",
+                    :first_publish_year => 1901 }
+    post :add_book_from_api, id: @user, book_params: book_params
+    assert_not flash.empty?
+    assert Book.find_by(openlibrary_key: "/works/234432")
+    added_book = Book.find_by(openlibrary_key: "/works/234432")
+    assert @user.on_list?(added_book)
   end
 end
