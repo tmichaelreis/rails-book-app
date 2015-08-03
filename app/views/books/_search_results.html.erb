@@ -2,7 +2,10 @@
   <% @search_results.each_with_index do |book, idx| %>
   
     <% if @search_results_type == "db" %>
-      <% thumbnail_url = book.thumbnail_url || asset_path('no_thumb.jpg') %>
+      <% logger.info("Thumbnail_url: " + (book.thumbnail_url == "").to_s) %>
+      <% (book.thumbnail_url == "") ? thumbnail_url = asset_path('no_thumb.jpg') : 
+                                      thumbnail_url = book.thumbnail_url %>
+      <% logger.info(thumbnail_url) %>
       <% author = book.author %>
       <% info_url = 'https://openlibrary.org' + book.openlibrary_key %>
       

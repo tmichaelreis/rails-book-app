@@ -1,5 +1,5 @@
 <% provide(:title, @user.name) %>
-<div class="row">
+<div class="row" id="user_page">
   <aside class="col-md-4">
     <section class="user_info">
       <h1>
@@ -22,7 +22,9 @@
       </ol>
       <%= will_paginate @books %>
     <% else %>
-      <span><%= "No books on " + @user.name + "'s reading list :(" %></span>
+      <span class="no_books">
+        <%= "No books on " + @user.name + "'s reading list :(" %>
+      </span>
     <% end %>
   </div>
 </div>

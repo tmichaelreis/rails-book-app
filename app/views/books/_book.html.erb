@@ -1,4 +1,5 @@
-<% thumbnail_url = book.thumbnail_url || asset_path('no_thumb.jpg') %>
+<% (book.thumbnail_url == "") ? thumbnail_url = asset_path('no_thumb.jpg') : 
+                                      thumbnail_url = book.thumbnail_url %>
 <% info_url = 'https://openlibrary.org' + book.openlibrary_key %>
 
 <li id="book-<%= book.id %>">

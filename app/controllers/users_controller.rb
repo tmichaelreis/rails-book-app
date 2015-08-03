@@ -54,7 +54,8 @@ class UsersController < ApplicationController
   def add_book_to_list
     book = Book.find(params[:book_id])
     current_user.add_to_list(book)
-    flash[:success] = "Book added to your reading list!"
+    flash[:success] = "#{book.title} has been added to your reading " +
+                      "list!"
     redirect_to current_user
   end
   
@@ -63,7 +64,8 @@ class UsersController < ApplicationController
     if @book.save
       new_book = Book.find(@book.id)
       current_user.add_to_list(new_book)
-      flash[:success] = "Book added to your reading list!"
+      flash[:success] = "#{@book.title} has been added to your " + 
+                        "reading list!"
       redirect_to current_user
     else
       flash[:warning] = "Book could not be added to the database!"
@@ -73,7 +75,7 @@ class UsersController < ApplicationController
   def remove_book_from_list
     book = Book.find(params[:book_id])
     current_user.remove_from_list(book)
-    flash[:success] = "#{book.title} removed from your reading list!"
+    flash[:success] = "#{book.title} has been removed from your reading list!"
     redirect_to current_user
   end
   

@@ -8,7 +8,7 @@ class BooksController < ApplicationController
     # If no book can be found, search external API
     if @search_results.length == 0
       client = Openlibrary::Client.new
-      @search_results = client.search(params[:search])
+      @search_results = client.search(params[:search], 50)
       @search_results_type = "api"
     end
   end
