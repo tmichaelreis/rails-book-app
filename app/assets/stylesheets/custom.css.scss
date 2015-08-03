@@ -13,15 +13,6 @@
 
 body {
   padding-top: 60px;
-  background-image: url("library_background.jpg");
-  header {
-    div.container {
-      background:rgba(255,255,255,0) !important;
-    }
-  }
-  .jumbotron {
-    background:rgba(255,255,255,0.75)
-  }
 }
 
 div.col-md-8 {
@@ -110,9 +101,9 @@ footer {
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
-  color: white;
+  color: #777;
   a {
-    color: white;
+    color: #777;
     &:hover {
       color: #222;
     }
@@ -141,11 +132,6 @@ footer {
 }
 
 /* sidebar */
-
-aside.col-md-4 {
-  width: 25.3333333% !important;
-  margin-right: 5%;
-}
   
 aside {
   section.user_info {
