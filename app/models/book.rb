@@ -9,6 +9,7 @@ class Book < ActiveRecord::Base
             uniqueness: { case_sensitive: false }
   
   def self.search_db(query)
-      where('title LIKE ? OR author LIKE ?', "%#{query}%", "%#{query}%")
+      where('LOWER(title) LIKE LOWER(?) OR LOWER(author) LIKE LOWER(?)', 
+            "%#{query}%", "%#{query}%")
   end
 end
