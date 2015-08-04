@@ -3,4 +3,13 @@
     <%= render @reading_list_items %>
   </ol>
   <%= will_paginate @reading_list_items %>
+<% else %>
+  <span class="no_books">
+    <p>
+      You have no books on your reading list :(.
+    </p>
+    <p>
+      Use the book search feature to the left to search for books to read!
+    </p>
+  </span>
 <% end %>
