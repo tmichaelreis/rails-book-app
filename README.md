@@ -1,9 +1,10 @@
 # Book Club: a social book list
 
 This is an application that you can use to make a list of books
-you've read and would like to read,
-and view books that other people have read.  
+you would like to read,
+and view other users' lists.
 
-The intended extensions include: rating and reviewing books, 
-following other people's reading lists, 
-sharing messages about books, finding people based on their book interests.
+The intended extensions include: marking books as read, 
+rating and reviewing books, 
+following other users' reading lists, 
+sharing messages about books, finding people based on their book interests, etc.

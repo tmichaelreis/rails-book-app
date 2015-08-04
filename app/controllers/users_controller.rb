@@ -5,11 +5,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    if @user.activated
-      @books = @user.books.paginate(page: params[:page])
-    else
-      redirect_to root_url and return
-    end
+    @books = @user.books.paginate(page: params[:page])
   end
   
   def new
@@ -19,8 +15,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      @user.send_activation_email
-      flash[:info] = "Check your email to activate account."
+      flash[:info] = "Account created successfully."
+      log_in @user
       redirect_to root_url
     else
       render 'new'
@@ -42,7 +38,7 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.where(activated: true).paginate(page: params[:page])
+    @users = User.paginate(page: params[:page])
   end
   
   def destroy
