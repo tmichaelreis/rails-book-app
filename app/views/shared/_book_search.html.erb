@@ -1,7 +1,8 @@
 <%= form_tag :controller => 'books', :action => 'search', 
              :method => 'get', :remote => true do %>
   <%= text_field_tag :search, params[:search], 
-      :placeholder => 'Search by book title...', :id => 'search_field' %>
+      :placeholder => 'Search by book title or author...', 
+      :id => 'search_field' %>
   <%= submit_tag "Search Books", :name => nil, 
                                  :class => "btn btn-sm btn-primary" %>
 <% end %>
